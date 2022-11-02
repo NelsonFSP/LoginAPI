@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.nelson.LoginAPI.domain.User;
 import com.nelson.LoginAPI.repository.UserRepository;
 import com.nelson.LoginAPI.service.exception.ObjectNotFoundException;
-import com.nelson.LoginAPI.userDTO.UserDTO;
 
 
 @Service
@@ -35,10 +34,10 @@ public class UserService {
 		repo.deleteById(id);
 	}
 	
-	public User update(User obj) {
+	public void update(User obj) {
 		User newObj = findById(obj.getId());
 		updateData(newObj, obj);
-		return repo.save(newObj);
+		repo.save(newObj);
 	}
 	
 	private void updateData(User newObj, User obj) {
@@ -46,9 +45,4 @@ public class UserService {
 		newObj.setLogin(obj.getLogin());
 		newObj.setPassword(obj.getPassword());
 	}
-	
-	public User fromDTO(UserDTO objDto) {
-		return new User(objDto.getId(), objDto.getName(),objDto.getLogin(),objDto.getPassword());
-	}
-	
 }
