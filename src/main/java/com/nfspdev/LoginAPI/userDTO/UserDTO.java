@@ -1,13 +1,12 @@
-package com.nelson.LoginAPI.userDTO;
+package com.nfspdev.LoginAPI.userDTO;
 
 import java.io.Serializable;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import com.nelson.LoginAPI.domain.User;
+import com.nfspdev.LoginAPI.domain.User;
 
 @Getter
 @Setter

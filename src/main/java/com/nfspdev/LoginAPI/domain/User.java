@@ -1,17 +1,18 @@
-package com.nelson.LoginAPI.domain;
+package com.nfspdev.LoginAPI.domain;
 
-import java.io.Serializable;
-
-import com.nelson.LoginAPI.userDTO.UserDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Setter
 @Getter
 @Builder
+@AllArgsConstructor
 @Document (collection = "user")
 public class User implements Serializable{
 	
@@ -22,13 +23,4 @@ public class User implements Serializable{
 	private String name;
 	private String login;
 	private String password;
-
-	public UserDTO fromUserToDTo (){
-		return UserDTO.builder()
-				.id(id)
-				.name(name)
-				.login(login)
-				.password(password)
-				.build();
-	}
 }

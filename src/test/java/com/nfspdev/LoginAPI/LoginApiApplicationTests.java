@@ -1,4 +1,4 @@
-package com.nelson.LoginAPI;
+package com.nfspdev.LoginAPI;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
