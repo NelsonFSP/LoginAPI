@@ -1,19 +1,15 @@
-package com.nelson.LoginAPI.config;
+package com.nfspdev.LoginAPI.config;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.nfspdev.LoginAPI.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.nelson.LoginAPI.domain.User;
-import com.nelson.LoginAPI.repository.UserRepository;
+import com.nfspdev.LoginAPI.domain.User;
 
 @Configuration
 @RequiredArgsConstructor

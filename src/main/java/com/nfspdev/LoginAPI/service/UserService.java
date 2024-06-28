@@ -1,14 +1,14 @@
-package com.nelson.LoginAPI.service;
+package com.nfspdev.LoginAPI.service;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.nfspdev.LoginAPI.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nelson.LoginAPI.domain.User;
-import com.nelson.LoginAPI.repository.UserRepository;
-import com.nelson.LoginAPI.service.exception.ObjectNotFoundException;
+import com.nfspdev.LoginAPI.domain.User;
+import com.nfspdev.LoginAPI.service.exception.ObjectNotFoundException;
 
 
 @Service
