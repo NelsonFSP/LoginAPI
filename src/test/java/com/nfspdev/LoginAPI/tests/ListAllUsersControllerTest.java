@@ -1,5 +1,7 @@
 package com.nfspdev.loginAPI.tests;
 
+import com.nfspdev.loginAPI.adapters.IUserRepository;
+import com.nfspdev.loginAPI.adapters.dto.UserEntity;
 import com.nfspdev.loginAPI.core.domain.User;
 import com.nfspdev.loginAPI.core.service.DatabaseServiceImpl;
 import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
@@ -15,11 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ListAllUsersControllerTest {
 
-    private final DatabaseServiceImpl service;
+    private final IUserRepository service;
+    private final
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<UserDTO>> findAll(){
-        List<User> list = service.findAll();
+        List<UserEntity> list = service.findAll();
         List<UserDTO> listDTO = list.stream().map(User::fromUserToDTo).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
