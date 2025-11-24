@@ -1,4 +1,4 @@
-package com.nfspdev.LoginAPI.userDTO;
+package com.nfspdev.loginAPI.entrypoint.dto;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import com.nfspdev.LoginAPI.domain.User;
+import com.nfspdev.loginAPI.core.domain.User;
 
 @Getter
 @Setter
@@ -20,14 +20,4 @@ public class UserDTO implements Serializable{
 	private String name;
 	private String login;
 	private String password;
-
-	public User dtoToUser(){
-		return User.builder()
-				.id(id)
-				.name(name)
-				.login(login)
-				.password(password)
-				.build();
-	}
-
 }
