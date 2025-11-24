@@ -1,7 +1,8 @@
-package com.nfspdev.LoginAPI.entrypoint.controller;
+package com.nfspdev.loginAPI.entrypoint.controller;
 
-import com.nfspdev.LoginAPI.service.UserService;
-import com.nfspdev.LoginAPI.userDTO.UserDTO;
+import com.nfspdev.loginAPI.adapters.IUserRepository;
+import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
+import com.nfspdev.loginAPI.entrypoint.dto.mapper.IMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class GetUserController {
-    private final UserService service;
+    private final IUserRepository service;
+    private final IMapper mapper;
+
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> findById(@PathVariable String id){
+    public ResponseEntity<?> findById(@PathVariable String id){
         var obj = service.findById(id);
-        return ResponseEntity.ok().body(obj.fromUserToDTo());
+        return obj.map(user -> ResponseEntity.ok().body(mapper.userToDto(user))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

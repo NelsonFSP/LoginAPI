@@ -1,7 +1,7 @@
 package com.nfspdev.loginAPI.entrypoint.controller;
 
-import com.nfspdev.loginAPI.core.service.DatabaseServiceImpl;
-import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
+import com.nfspdev.LoginAPI.service.UserService;
+import com.nfspdev.LoginAPI.userDTO.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class UpdateUserController {
-    private final DatabaseServiceImpl service;
+    private final UserService service;
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
         var obj = objDto.dtoToUser();
