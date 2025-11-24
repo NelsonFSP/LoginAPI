@@ -1,21 +1,21 @@
-package com.nfspdev.LoginAPI.config;
+package com.nfspdev.loginAPI.core.config;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.TimeZone;
 
-import com.nfspdev.LoginAPI.repository.UserRepository;
+import com.nelson.LoginAPI.repository.UserRepository;
+import com.nfspdev.loginAPI.adapters.IUserRepository;
+import com.nfspdev.loginAPI.core.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-
-import com.nfspdev.LoginAPI.domain.User;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.TimeZone;
 
 @Configuration
 @RequiredArgsConstructor
 public class Instantiation implements CommandLineRunner{
 
-	private final UserRepository userRepository;
+	private final IUserRepository userRepository;
 
 	@Override
 	public void run(String... args) throws Exception {

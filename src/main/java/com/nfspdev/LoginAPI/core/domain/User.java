@@ -1,4 +1,4 @@
-package com.nfspdev.LoginAPI.domain;
+package com.nfspdev.loginAPI.core.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Document (collection = "user")
 public class User implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

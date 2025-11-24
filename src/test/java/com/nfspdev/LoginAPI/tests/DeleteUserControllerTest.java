@@ -1,4 +1,4 @@
-package com.nfspdev.loginAPI.entrypoint.controller;
+package com.nfspdev.loginAPI.tests;
 
 import com.nfspdev.loginAPI.core.service.DatabaseServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class DeleteUserController {
+public class DeleteUserControllerTest {
     private final DatabaseServiceImpl service;
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){

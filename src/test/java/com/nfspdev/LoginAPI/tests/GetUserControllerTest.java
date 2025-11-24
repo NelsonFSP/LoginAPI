@@ -1,4 +1,4 @@
-package com.nfspdev.loginAPI.entrypoint.controller;
+package com.nfspdev.loginAPI.tests;
 
 import com.nfspdev.loginAPI.core.service.DatabaseServiceImpl;
 import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class GetUserController {
+public class GetUserControllerTest {
     private final DatabaseServiceImpl service;
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable String id){

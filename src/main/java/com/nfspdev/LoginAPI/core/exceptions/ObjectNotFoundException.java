@@ -1,4 +1,4 @@
-package com.nfspdev.LoginAPI.service.exception;
+package com.nfspdev.loginAPI.core.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

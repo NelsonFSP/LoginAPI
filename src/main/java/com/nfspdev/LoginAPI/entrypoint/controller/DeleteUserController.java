@@ -1,6 +1,6 @@
-package com.nfspdev.LoginAPI.entrypoint.controller;
+package com.nfspdev.loginAPI.entrypoint.controller;
 
-import com.nfspdev.LoginAPI.service.UserService;
+import com.nfspdev.loginAPI.adapters.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class DeleteUserController {
-    private final UserService service;
+    private final IUserRepository service;
+
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id){
-        service.delete(id);
+    public ResponseEntity<?> delete(@PathVariable String id){
+        service.deleteUser(id);
         return ResponseEntity.accepted().build();
     }
 }
