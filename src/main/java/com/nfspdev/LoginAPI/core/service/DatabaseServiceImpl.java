@@ -33,7 +33,7 @@ public abstract class DatabaseServiceImpl implements IUserRepository {
     }
 
     @Override
-    public void updateUser(UserEntity obj) {
+    public UserEntity updateUser(UserEntity obj) {
         Optional<UserEntity> rawEntity = findById(obj.id());
         try {
             if(rawEntity.isPresent()){
@@ -44,6 +44,7 @@ public abstract class DatabaseServiceImpl implements IUserRepository {
         } catch (Exception e) {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
+        return null;
     }
 
     private UserEntity updateData(UserEntity obj) {
