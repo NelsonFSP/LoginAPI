@@ -3,7 +3,6 @@ package com.nfspdev.loginAPI.core.config;
 
 import com.nfspdev.loginAPI.adapters.IUserRepository;
 import com.nfspdev.loginAPI.adapters.dto.UserEntity;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
