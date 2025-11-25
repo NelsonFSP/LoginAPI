@@ -18,5 +18,5 @@ public interface IUserRepository extends MongoRepository<UserEntity, String> {
 
     void deleteUser(String id);
 
-    void updateUser(UserEntity obj);
+    UserEntity updateUser(UserEntity obj);
 }

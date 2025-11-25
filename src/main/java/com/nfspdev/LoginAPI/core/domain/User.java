@@ -1,22 +1,20 @@
 package com.nfspdev.loginAPI.core.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Setter
 @Getter
-@Builder
 @AllArgsConstructor
-@Document (collection = "user")
 public class User implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	@Id
 	private String id;
