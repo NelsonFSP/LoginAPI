@@ -1,5 +1,4 @@
 # LoginAPI
-
 API simples para CRUD de usuários usando Java (Spring Boot) e MongoDB.
 
 Este repositório contém uma aplicação Spring Boot que expõe endpoints HTTP para criar, buscar, listar e deletar usuários. Foi construída com Maven e usa o starter do Spring Data MongoDB.
