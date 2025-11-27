@@ -21,7 +21,7 @@ Este repositório contém uma aplicação Spring Boot que expõe endpoints HTTP 
 [![Java](https://img.shields.io/badge/Java-25-blue?logo=java)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-used-6DB33F?logo=spring)](https://spring.io/projects/spring-boot)
 [![Maven](https://img.shields.io/badge/Maven-used-CC0000?logo=apache-maven)](https://maven.apache.org/)
-[![DynamoDB](https://img.shields.io/badge/DynamoDb-used-blue)](https://www.mongodb.com/)
+[![DynamoDB](https://img.shields.io/badge/DynamoDb-used-blue)](https://aws.amazon.com/pt/dynamodb/)
 [![MapStruct](https://img.shields.io/badge/MapStruct-used-4F5B93?logo=mapstruct)](https://mapstruct.org/)
 [![Lombok](https://img.shields.io/badge/Lombok-used-C51A4A?logo=project-lombok)](https://projectlombok.org/)
 [![JUnit](https://img.shields.io/badge/JUnit-used-25A162?logo=junit)](https://junit.org/)
