@@ -1,15 +1,14 @@
-package com.nfspdev.loginAPI.core.usecase;
+package com.nfspdev.loginapi.core.usecase;
 
-import com.nfspdev.loginAPI.adapters.IUserRepository;
-import com.nfspdev.loginAPI.adapters.dto.UserEntity;
-import com.nfspdev.loginAPI.adapters.dto.mapper.IAdapterMapper;
-import com.nfspdev.loginAPI.core.domain.User;
-import com.nfspdev.loginAPI.core.usecase.ports.IUsuario;
+import com.nfspdev.loginapi.adapters.IUserRepository;
+import com.nfspdev.loginapi.adapters.dto.UserEntity;
+import com.nfspdev.loginapi.adapters.dto.mapper.IAdapterMapper;
+import com.nfspdev.loginapi.core.domain.User;
+import com.nfspdev.loginapi.core.usecase.ports.IUsuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -37,27 +36,21 @@ public class Usuario implements IUsuario {
 
     @Override
     public User buscarUsuario(String idUsuario) {
-        Optional<UserEntity> entidadeRecuperada = service.findUserById(idUsuario);
-        if (entidadeRecuperada.isPresent()) {
-            UserEntity usuarioRecuperado = entidadeRecuperada.get();
-            return adapterMapper.toDomain(usuarioRecuperado);
-        }
-        return null;
+        UserEntity entidadeRecuperada = service.findUserById(idUsuario);
+        return adapterMapper.toDomain(entidadeRecuperada);
+
     }
 
     @Override
     public User atualizarUsuario(User novoUsuario) {
-        Optional<UserEntity> entidadeRecuperada = service.findUserById(novoUsuario.getId());
-        if (entidadeRecuperada.isPresent()) {
-            UserEntity usuarioRecuperado = entidadeRecuperada.get();
-            User usuarioRecuperadoConvertido = adapterMapper.toDomain(usuarioRecuperado);
-            User usuarioAtualizadao = atualizarDadosUsuario(usuarioRecuperadoConvertido, novoUsuario);
-            return adapterMapper.toDomain(service.updateUser(adapterMapper.toEntity(usuarioAtualizadao)));
-        }
-        return null;
+        UserEntity usuarioRecuperado = service.findUserById(novoUsuario.getId());
+        User usuarioRecuperadoConvertido = adapterMapper.toDomain(usuarioRecuperado);
+        User usuarioAtualizadao = atualizarDadosUsuario(usuarioRecuperadoConvertido, novoUsuario);
+        return adapterMapper.toDomain(service.updateUser(adapterMapper.toEntity(usuarioAtualizadao)));
+
     }
 
-    private static User atualizarDadosUsuario(User usuarioRecuperado, User novoUsuario){
+    private static User atualizarDadosUsuario(User usuarioRecuperado, User novoUsuario) {
         usuarioRecuperado.setName(novoUsuario.getName());
         usuarioRecuperado.setLogin(novoUsuario.getLogin());
         usuarioRecuperado.setPassword(novoUsuario.getPassword());

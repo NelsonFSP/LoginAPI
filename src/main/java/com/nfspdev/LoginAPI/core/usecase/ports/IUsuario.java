@@ -1,6 +1,6 @@
-package com.nfspdev.loginAPI.core.usecase.ports;
+package com.nfspdev.loginapi.core.usecase.ports;
 
-import com.nfspdev.loginAPI.core.domain.User;
+import com.nfspdev.loginapi.core.domain.User;
 
 import java.util.List;
 

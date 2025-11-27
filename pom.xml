@@ -6,17 +6,19 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.0.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.nelsonfsp</groupId>
 	<artifactId>LoginAPI</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2.0</version>
 	<name>LoginAPI</name>
 	<description>Login API with mongoDB and SpringBoot </description>
 
 	<properties>
 		<java.version>25</java.version>
         <spring.version>4.0.0</spring.version>
+        <aws.java.sdk.version>2.22.0</aws.java.sdk.version>
+        <lombok.version>1.18.42</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -33,9 +35,10 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-dynamodb</artifactId>
+            <version>3.4.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -46,7 +49,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-			<version>1.18.42</version>
+			<version>${lombok.version}</version>
         </dependency>
 
     </dependencies>
@@ -60,12 +63,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.1</version>
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.42</version>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

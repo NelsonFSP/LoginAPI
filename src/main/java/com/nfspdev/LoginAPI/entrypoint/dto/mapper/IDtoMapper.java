@@ -1,7 +1,7 @@
-package com.nfspdev.loginAPI.entrypoint.dto.mapper;
+package com.nfspdev.loginapi.entrypoint.dto.mapper;
 
-import com.nfspdev.loginAPI.core.domain.User;
-import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
+import com.nfspdev.loginapi.core.domain.User;
+import com.nfspdev.loginapi.entrypoint.dto.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

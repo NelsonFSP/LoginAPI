@@ -1,7 +1,7 @@
-package com.nfspdev.loginAPI.adapters.dto.mapper;
+package com.nfspdev.loginapi.adapters.dto.mapper;
 
-import com.nfspdev.loginAPI.adapters.dto.UserEntity;
-import com.nfspdev.loginAPI.core.domain.User;
+import com.nfspdev.loginapi.adapters.dto.UserEntity;
+import com.nfspdev.loginapi.core.domain.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

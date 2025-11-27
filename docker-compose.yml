@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"          # Default LocalStack edge port
+    environment:
+      - SERVICES=dynamodb # Specify desired services
+      - DEFAULT_REGION=sa-east-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:3.1.0
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.dynamodbdata:/home/dynamodblocal/data
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    depends_on:
+      - localstack
+
+  dynamodb-init:
+    image: amazon/aws-cli
+    container_name: aws-cli-dynamodb-init
+    command: >
+      dynamodb create-table 
+      --table-name User --attribute-definitions 
+          AttributeName=id,AttributeType=S
+          AttributeName=name,AttributeType=S
+      --key-schema 
+          AttributeName=id,KeyType=HASH
+          AttributeName=name,KeyType=RANGE
+      --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 
+      --endpoint-url http://dynamodb-local:8000
+    depends_on:
+      - dynamodb-local
