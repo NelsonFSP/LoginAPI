@@ -1,18 +1,16 @@
-package com.nfspdev.loginAPI.adapters;
+package com.nfspdev.loginapi.adapters;
 
-import com.nfspdev.loginAPI.adapters.dto.UserEntity;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.nfspdev.loginapi.adapters.dto.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface IUserRepository extends MongoRepository<UserEntity, String> {
+public interface IUserRepository {
 
     List<UserEntity> findAllUsers();
 
-    Optional<UserEntity> findUserById(String id);
+    UserEntity findUserById(String id);
 
     UserEntity saveUser(UserEntity obj);
 

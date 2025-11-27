@@ -1,38 +1,23 @@
-package com.nfspdev.loginAPI.core.config;
+package com.nfspdev.loginapi.core.config;
 
 
-import com.nfspdev.loginAPI.adapters.IUserRepository;
-import com.nfspdev.loginAPI.adapters.dto.UserEntity;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.TimeZone;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 @Configuration
-public class Instantiation implements CommandLineRunner {
+public class Instantiation {
+    @Value("${dynamo-db-region}")
+    private String region;
 
-    private final IUserRepository userRepository;
-
-    public Instantiation(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-        userRepository.deleteAll();
-
-        UserEntity maria = new UserEntity(
-                null
-                ,"Maria Cicera"
-                ,"MaCic"
-                , "132456");
-
-        userRepository.saveAll(List.of(maria));
-
+    @Bean
+    public DynamoDbClient dynamoDbClient() {
+        return DynamoDbClient.builder()
+                .region(Region.of(region))
+                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+                .build();
     }
 }

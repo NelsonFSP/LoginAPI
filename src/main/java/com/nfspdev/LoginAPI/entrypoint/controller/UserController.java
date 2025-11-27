@@ -1,40 +1,49 @@
-package com.nfspdev.loginAPI.entrypoint.controller;
+package com.nfspdev.loginapi.entrypoint.controller;
 
-import com.nfspdev.loginAPI.core.usecase.ports.IUsuario;
-import com.nfspdev.loginAPI.entrypoint.dto.UserDTO;
-import com.nfspdev.loginAPI.entrypoint.dto.mapper.IDtoMapper;
-import lombok.RequiredArgsConstructor;
+import com.nfspdev.loginapi.core.domain.User;
+import com.nfspdev.loginapi.core.usecase.ports.IUsuario;
+import com.nfspdev.loginapi.entrypoint.dto.UserDTO;
+import com.nfspdev.loginapi.entrypoint.dto.mapper.IDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
-@RequiredArgsConstructor
 public class UserController {
-
-    @Autowired
-    private IUsuario service;
-
+    private final IUsuario service;
     private final IDtoMapper dtoMapper;
 
+    @Autowired
+    public UserController(IUsuario service, IDtoMapper dtoMapper) {
+        this.service = service;
+        this.dtoMapper = dtoMapper;
+    }
+
     @PostMapping(value="/user")
-    public ResponseEntity<?> novoUsuario(@RequestBody UserDTO novoUsuario){
-        return ResponseEntity.ok(service.salvarUsuario(dtoMapper.toUser(novoUsuario)));
+    public ResponseEntity<UserDTO> novoUsuario(@RequestBody UserDTO novoUsuario){
+        User usuarioConvertidoParaEntidadeDeDominio = dtoMapper.toUser(novoUsuario);
+        UserDTO usuarioSalvoDto = dtoMapper.toDto(service.salvarUsuario(usuarioConvertidoParaEntidadeDeDominio));
+        return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> buscarUsuario(@PathVariable String id){
-        return ResponseEntity.ok(dtoMapper.toDto(service.buscarUsuario(id)));
+    public ResponseEntity<UserDTO> buscarUsuario(@PathVariable String id){
+        UserDTO usuarioSalvoDto = dtoMapper.toDto(service.buscarUsuario(id));
+        return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @GetMapping(value = "/users")
-    public ResponseEntity<?> buscarUsuarios(@PathVariable String id){
-        return ResponseEntity.ok(service.listarUsuarios());
+    public ResponseEntity<List<UserDTO>> buscarUsuarios(){
+        List<UserDTO> usuarioSalvoDto = service.listarUsuarios().stream().map(dtoMapper::toDto).collect(Collectors.toList());
+        return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id){
+    public ResponseEntity<String> delete(@PathVariable String id){
         service.deletarUsuario(id);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().body("Usuário " + id + "deletado");
     }
 }
