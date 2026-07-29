@@ -1,12 +1,11 @@
-package com.nfspdev.loginapi.adapters.dto;
-
+package com.nfspdev.loginApi.adapters.dto;
 
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
 @DynamoDbBean
-public class UserEntity{
+public class UserEntity {
     private String id;
     private String name;
     private String login;

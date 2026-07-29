@@ -1,7 +1,7 @@
-package com.nfspdev.loginapi.core.service;
+package com.nfspdev.loginApi.core.service;
 
-import com.nfspdev.loginapi.adapters.IUserRepository;
-import com.nfspdev.loginapi.adapters.dto.UserEntity;
+import com.nfspdev.loginApi.adapters.IUserRepository;
+import com.nfspdev.loginApi.adapters.dto.UserEntity;
 import io.awspring.cloud.dynamodb.DynamoDbTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.Objects;
 
 @Service
-public  class DatabaseServiceImpl implements IUserRepository {
+public class DatabaseServiceImpl implements IUserRepository {
 
     private final DynamoDbTemplate dynamoDbTemplate;
 
@@ -22,7 +22,6 @@ public  class DatabaseServiceImpl implements IUserRepository {
     public DatabaseServiceImpl(DynamoDbTemplate dynamoDbTemplate) {
         this.dynamoDbTemplate = dynamoDbTemplate;
     }
-
 
     @Override
     public List<UserEntity> findAllUsers() {
@@ -38,24 +37,25 @@ public  class DatabaseServiceImpl implements IUserRepository {
                 .filterExpression(Expression.builder()
                         .expression("id = :id_value")
                         .expressionValues(
-                                Map.of( ":id_value", AttributeValue.fromS(id)))
+                                Map.of(":id_value", AttributeValue.fromS(id)))
                         .build())
                 .build();
-        return dynamoDbTemplate.scan(scanRequest, UserEntity.class).items().stream().findFirst().orElseThrow();
+        return dynamoDbTemplate.scan(Objects.requireNonNull(scanRequest), UserEntity.class).items().stream().findFirst()
+                .orElseThrow();
     }
 
     @Override
     public UserEntity saveUser(UserEntity obj) {
-        return dynamoDbTemplate.save(obj);
+        return dynamoDbTemplate.save(Objects.requireNonNull(obj));
     }
 
     @Override
     public void deleteUser(String id) {
-        dynamoDbTemplate.save(findUserById(id));
+        dynamoDbTemplate.delete(Objects.requireNonNull(findUserById(id)));
     }
 
     @Override
     public UserEntity updateUser(UserEntity atualizacao) {
-        return dynamoDbTemplate.update(atualizacao);
+        return dynamoDbTemplate.update(Objects.requireNonNull(atualizacao));
     }
 }

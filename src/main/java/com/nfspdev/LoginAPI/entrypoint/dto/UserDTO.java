@@ -1,4 +1,4 @@
-package com.nfspdev.loginapi.entrypoint.dto;
+package com.nfspdev.loginApi.entrypoint.dto;
 
 import java.io.Serializable;
 
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserDTO implements Serializable{
-	
+public class UserDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private String id;

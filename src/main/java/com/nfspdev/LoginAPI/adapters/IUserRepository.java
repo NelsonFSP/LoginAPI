@@ -1,6 +1,6 @@
-package com.nfspdev.loginapi.adapters;
+package com.nfspdev.loginApi.adapters;
 
-import com.nfspdev.loginapi.adapters.dto.UserEntity;
+import com.nfspdev.loginApi.adapters.dto.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

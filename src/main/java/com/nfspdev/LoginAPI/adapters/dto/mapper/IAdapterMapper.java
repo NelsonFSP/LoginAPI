@@ -1,15 +1,16 @@
-package com.nfspdev.loginapi.adapters.dto.mapper;
+package com.nfspdev.loginApi.adapters.dto.mapper;
 
-import com.nfspdev.loginapi.adapters.dto.UserEntity;
-import com.nfspdev.loginapi.core.domain.User;
-import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import com.nfspdev.loginApi.adapters.dto.UserEntity;
+import com.nfspdev.loginApi.core.domain.User;
+import org.mapstruct.Mapper;
 
 @Mapper
 public interface IAdapterMapper {
 
-   IAdapterMapper INSTANCE = Mappers.getMapper(IAdapterMapper.class);
+    IAdapterMapper INSTANCE = Mappers.getMapper(IAdapterMapper.class);
 
     UserEntity toEntity(User user);
+
     User toDomain(UserEntity entity);
 }

@@ -1,9 +1,9 @@
-package com.nfspdev.loginapi.entrypoint.controller;
+package com.nfspdev.loginApi.entrypoint.controller;
 
-import com.nfspdev.loginapi.core.domain.User;
-import com.nfspdev.loginapi.core.usecase.ports.IUsuario;
-import com.nfspdev.loginapi.entrypoint.dto.UserDTO;
-import com.nfspdev.loginapi.entrypoint.dto.mapper.IDtoMapper;
+import com.nfspdev.loginApi.core.usecase.ports.IUsuario;
+import com.nfspdev.loginApi.entrypoint.dto.UserDTO;
+import com.nfspdev.loginApi.entrypoint.dto.mapper.IDtoMapper;
+import com.nfspdev.loginApi.core.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,27 +22,28 @@ public class UserController {
         this.dtoMapper = dtoMapper;
     }
 
-    @PostMapping(value="/user")
-    public ResponseEntity<UserDTO> novoUsuario(@RequestBody UserDTO novoUsuario){
+    @PostMapping(value = "/user")
+    public ResponseEntity<UserDTO> novoUsuario(@RequestBody UserDTO novoUsuario) {
         User usuarioConvertidoParaEntidadeDeDominio = dtoMapper.toUser(novoUsuario);
         UserDTO usuarioSalvoDto = dtoMapper.toDto(service.salvarUsuario(usuarioConvertidoParaEntidadeDeDominio));
         return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> buscarUsuario(@PathVariable String id){
+    public ResponseEntity<UserDTO> buscarUsuario(@PathVariable String id) {
         UserDTO usuarioSalvoDto = dtoMapper.toDto(service.buscarUsuario(id));
         return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @GetMapping(value = "/users")
-    public ResponseEntity<List<UserDTO>> buscarUsuarios(){
-        List<UserDTO> usuarioSalvoDto = service.listarUsuarios().stream().map(dtoMapper::toDto).collect(Collectors.toList());
+    public ResponseEntity<List<UserDTO>> buscarUsuarios() {
+        List<UserDTO> usuarioSalvoDto = service.listarUsuarios().stream().map(dtoMapper::toDto)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(usuarioSalvoDto);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id){
+    public ResponseEntity<String> delete(@PathVariable String id) {
         service.deletarUsuario(id);
         return ResponseEntity.accepted().body("Usuário " + id + "deletado");
     }

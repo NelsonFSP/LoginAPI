@@ -1,10 +1,10 @@
-package com.nfspdev.loginapi.core.usecase;
+package com.nfspdev.loginApi.core.usecase;
 
-import com.nfspdev.loginapi.adapters.IUserRepository;
-import com.nfspdev.loginapi.adapters.dto.UserEntity;
-import com.nfspdev.loginapi.adapters.dto.mapper.IAdapterMapper;
-import com.nfspdev.loginapi.core.domain.User;
-import com.nfspdev.loginapi.core.usecase.ports.IUsuario;
+import com.nfspdev.loginApi.adapters.IUserRepository;
+import com.nfspdev.loginApi.adapters.dto.UserEntity;
+import com.nfspdev.loginApi.adapters.dto.mapper.IAdapterMapper;
+import com.nfspdev.loginApi.core.domain.User;
+import com.nfspdev.loginApi.core.usecase.ports.IUsuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

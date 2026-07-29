@@ -1,4 +1,4 @@
-package com.nfspdev.loginapi;
+package com.nfspdev.loginApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

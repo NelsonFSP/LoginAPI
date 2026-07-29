@@ -1,4 +1,4 @@
-package com.nfspdev.loginapi.core.domain;
+package com.nfspdev.loginApi.core.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import java.io.Serializable;
 @Setter
 @Getter
 @AllArgsConstructor
-public class User implements Serializable{
+public class User implements Serializable {
 
 	@Serial
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String name;
